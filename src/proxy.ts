@@ -7,7 +7,7 @@ export const proxy = auth((req) => {
   const publicPages = ["/", "/login", "/register"];
   
   if (!req.auth && !publicPages.includes(pathname)) {
-    return Response.redirect(new URL("/login", req.nextUrl.origin));
+    return Response.redirect(new URL("/", req.nextUrl.origin));
   }
   
   if (req.auth && publicPages.includes(pathname)) {
@@ -18,5 +18,5 @@ export const proxy = auth((req) => {
 
 
 export const config = {
-  matcher: ["/", "/login", "/register", "/dashboard/:path*"],
+  matcher: ["/", "/dashboard/:path*"],
 };
